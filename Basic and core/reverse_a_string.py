@@ -7,3 +7,11 @@ def reverse(s):
     return result
 
 print(reverse("abbace"))
+
+# Q2. Reverse a string (with [::-1])
+
+def reverse_string(s):
+    return s[::-1]
+
+# Test
+print(reverse_string("hello"))  # Output: 'olleh'
