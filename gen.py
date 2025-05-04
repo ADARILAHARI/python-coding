@@ -1,4 +1,4 @@
-def count(n):
+'''def count(n):
     i = 1
     while i <= n:
         yeild i
@@ -13,3 +13,8 @@ def count(n):
         print(next(counter))
         print(next(counter))
         
+'''
+a = [1,2,3,4]
+b = [3,5,6,7]
+
+print(a in b)
