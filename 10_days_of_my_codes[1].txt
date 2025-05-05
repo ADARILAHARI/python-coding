@@ -1,0 +1,1969 @@
+11 days of my code:
+
+Day 1: Core Python Basics (Q1–Q10)
+
+#### 🔹 Q1. Reverse a string (without `[::-1]`)
+
+```python
+def reverse_string(s):
+    result = ''
+    for char in s:
+        result = char + result
+    return result
+
+# Test
+print(reverse_string("hello"))  # Output: 'olleh'
+```
+
+---
+
+#### 🔹 Q2. Check if a string is a palindrome
+
+```python
+def is_palindrome(s):
+    return s == s[::-1]
+
+# Test
+print(is_palindrome("madam"))  # True
+print(is_palindrome("hello"))  # False
+```
+
+---
+
+#### 🔹 Q3. Factorial using recursion
+
+```python
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    return n * factorial(n - 1)
+
+# Test
+print(factorial(5))  # 120
+```
+
+---
+
+#### 🔹 Q4. Fibonacci sequence (n terms)
+
+```python
+def fibonacci(n):
+    a, b = 0, 1
+    sequence = []
+    for _ in range(n):
+        sequence.append(a)
+        a, b = b, a + b
+    return sequence
+
+# Test
+print(fibonacci(7))  # [0, 1, 1, 2, 3, 5, 8]
+```
+
+---
+
+#### 🔹 Q5. Sum of digits
+
+```python
+def sum_of_digits(n):
+    return sum(int(digit) for digit in str(n))
+
+# Test
+print(sum_of_digits(1234))  # 10
+```
+
+---
+
+#### 🔹 Q6. Prime number check
+
+```python
+def is_prime(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+# Test
+print(is_prime(13))  # True
+print(is_prime(10))  # False
+```
+
+---
+
+#### 🔹 Q7. Count vowels and consonants
+
+```python
+def count_vowels_consonants(s):
+    vowels = 'aeiouAEIOU'
+    v = c = 0
+    for char in s:
+        if char.isalpha():
+            if char in vowels:
+                v += 1
+            else:
+                c += 1
+    return v, c
+
+# Test
+print(count_vowels_consonants("hello world"))  # (3, 7)
+```
+
+---
+
+#### 🔹 Q8. Swap two numbers (no temp variable)
+
+```python
+def swap(a, b):
+    a, b = b, a
+    return a, b
+
+# Test
+print(swap(5, 10))  # (10, 5)
+```
+
+---
+
+#### 🔹 Q9. Armstrong number check
+
+```python
+def is_armstrong(n):
+    digits = [int(x) for x in str(n)]
+    power = len(digits)
+    return sum(d ** power for d in digits) == n
+
+# Test
+print(is_armstrong(153))  # True
+print(is_armstrong(123))  # False
+```
+
+---
+
+#### 🔹 Q10. GCD and LCM of two numbers
+
+```python
+import math
+
+def gcd_lcm(a, b):
+    gcd = math.gcd(a, b)
+    lcm = abs(a * b) // gcd
+    return gcd, lcm
+
+# Test
+print(gcd_lcm(12, 18))  # (6, 36)
+```
+
+---
+
+
+
+## ✅day 2. Strings – Coding Questions & Solutions
+
+---
+
+### 🔹 1. Remove Duplicate Characters
+
+```python
+def remove_duplicates(s):
+    seen = set()
+    result = ''
+    for char in s:
+        if char not in seen:
+            seen.add(char)
+            result += char
+    return result
+
+# Test
+print(remove_duplicates("programming"))  # Output: 'progamin'
+```
+
+---
+
+### 🔹 2. Count Character Frequency
+
+```python
+def char_frequency(s):
+    freq = {}
+    for char in s:
+        freq[char] = freq.get(char, 0) + 1
+    return freq
+
+# Test
+print(char_frequency("banana"))  # Output: {'b': 1, 'a': 3, 'n': 2}
+```
+
+---
+
+### 🔹 3. Find the Longest Word in a String
+
+```python
+def longest_word(s):
+    words = s.split()
+    return max(words, key=len)
+
+# Test
+print(longest_word("I love Python programming"))  # Output: 'programming'
+```
+
+---
+
+### 🔹 4. Check if Two Strings are Anagrams
+
+```python
+def is_anagram(s1, s2):
+    return sorted(s1) == sorted(s2)
+
+# Test
+print(is_anagram("listen", "silent"))  # True
+print(is_anagram("hello", "world"))    # False
+```
+
+---
+
+### 🔹 5. First Non-Repeating Character
+
+```python
+def first_non_repeating(s):
+    from collections import OrderedDict
+    freq = OrderedDict()
+    for char in s:
+        freq[char] = freq.get(char, 0) + 1
+    for char, count in freq.items():
+        if count == 1:
+            return char
+    return None
+
+# Test
+print(first_non_repeating("aabbcddeff"))  # Output: 'c'
+```
+
+---
+
+### 🔹 6. Compress a String (e.g., `aaabb` → `a3b2`)
+
+```python
+def compress_string(s):
+    if not s:
+        return ""
+    result = ''
+    count = 1
+    for i in range(1, len(s)):
+        if s[i] == s[i-1]:
+            count += 1
+        else:
+            result += s[i-1] + str(count)
+            count = 1
+    result += s[-1] + str(count)
+    return result
+
+# Test
+print(compress_string("aaabbc"))  # Output: 'a3b2c1'
+```
+
+---
+
+### 🔹 7. String Rotation Check
+
+```python
+def is_rotation(s1, s2):
+    return len(s1) == len(s2) and s2 in s1 + s1
+
+# Test
+print(is_rotation("abcde", "deabc"))  # True
+```
+
+---
+
+### 🔹 8. Count Words in a String
+
+```python
+def count_words(s):
+    return len(s.split())
+
+# Test
+print(count_words("Python is awesome"))  # Output: 3
+```
+
+---
+
+### 🔹 9. Reverse Words in a Sentence
+
+```python
+def reverse_words(s):
+    return ' '.join(s.split()[::-1])
+
+# Test
+print(reverse_words("I love Python"))  # Output: 'Python love I'
+```
+
+---
+
+### 🔹 10. Implement `strstr()` (Search Substring)
+
+```python
+def strstr(haystack, needle):
+    if needle == "":
+        return 0
+    for i in range(len(haystack) - len(needle) + 1):
+        if haystack[i:i+len(needle)] == needle:
+            return i
+    return -1
+
+# Test
+print(strstr("hello world", "world"))  # Output: 6
+```
+
+---
+Great! We'll continue with **Day 3: Lists & Tuples – Top 10 Coding Questions**. These are essential in Python interviews, especially for logic building and array manipulation.
+
+---
+
+## ✅day 3. Lists & Tuples – Coding Questions & Solutions
+
+---
+
+### 🔹 1. Find Max and Min Elements in a List
+
+```python
+def find_max_min(lst):
+    return max(lst), min(lst)
+
+# Test
+print(find_max_min([10, 2, 33, 4, 55]))  # Output: (55, 2)
+```
+
+---
+
+### 🔹 2. Remove Duplicates from a List
+
+```python
+def remove_duplicates(lst):
+    return list(set(lst))
+
+# Test
+print(remove_duplicates([1, 2, 2, 3, 1]))  # Output: [1, 2, 3]
+```
+
+---
+
+### 🔹 3. Reverse a List
+
+```python
+def reverse_list(lst):
+    return lst[::-1]
+
+# Test
+print(reverse_list([1, 2, 3]))  # Output: [3, 2, 1]
+```
+
+---
+
+### 🔹 4. Merge Two Sorted Lists
+
+```python
+def merge_sorted_lists(a, b):
+    return sorted(a + b)
+
+# Test
+print(merge_sorted_lists([1, 3, 5], [2, 4, 6]))  # Output: [1, 2, 3, 4, 5, 6]
+```
+
+---
+
+### 🔹 5. Check if a List is a Palindrome
+
+```python
+def is_list_palindrome(lst):
+    return lst == lst[::-1]
+
+# Test
+print(is_list_palindrome([1, 2, 3, 2, 1]))  # True
+```
+
+---
+
+### 🔹 6. Rotate a List Left/Right
+
+```python
+def rotate_left(lst, k):
+    k %= len(lst)
+    return lst[k:] + lst[:k]
+
+def rotate_right(lst, k):
+    k %= len(lst)
+    return lst[-k:] + lst[:-k]
+
+# Test
+print(rotate_left([1, 2, 3, 4], 1))   # [2, 3, 4, 1]
+print(rotate_right([1, 2, 3, 4], 1))  # [4, 1, 2, 3]
+```
+
+---
+
+### 🔹 7. Find the Second Largest Number
+
+```python
+def second_largest(lst):
+    unique = list(set(lst))
+    unique.sort()
+    return unique[-2] if len(unique) >= 2 else None
+
+# Test
+print(second_largest([10, 20, 10, 40, 30]))  # Output: 30
+```
+
+---
+
+### 🔹 8. Flatten a Nested List
+
+```python
+def flatten(lst):
+    flat = []
+    for item in lst:
+        if isinstance(item, list):
+            flat.extend(flatten(item))
+        else:
+            flat.append(item)
+    return flat
+
+# Test
+print(flatten([1, [2, [3, 4], 5], 6]))  # Output: [1, 2, 3, 4, 5, 6]
+```
+
+---
+
+### 🔹 9. Sum of All Elements in a List
+
+```python
+def list_sum(lst):
+    return sum(lst)
+
+# Test
+print(list_sum([1, 2, 3, 4]))  # Output: 10
+```
+
+---
+
+### 🔹 10. Intersection and Union of Two Lists
+
+```python
+def list_intersection(a, b):
+    return list(set(a) & set(b))
+
+def list_union(a, b):
+    return list(set(a) | set(b))
+
+# Test
+print(list_intersection([1, 2, 3], [2, 3, 4]))  # [2, 3]
+print(list_union([1, 2, 3], [2, 3, 4]))        # [1, 2, 3, 4]
+```
+
+---
+
+Awesome! Let's continue with **Day 4: Dictionaries & Sets – Top 10 Python Coding Questions**. These are **frequent in interviews** for their use in hashing, counting, and quick lookups.
+
+---
+
+## ✅ 4. Dictionaries & Sets – Coding Questions & Solutions
+
+---
+
+### 🔹 1. Count Frequency of Each Element in a List
+
+```python
+def count_frequency(lst):
+    freq = {}
+    for item in lst:
+        freq[item] = freq.get(item, 0) + 1
+    return freq
+
+# Test
+print(count_frequency([1, 2, 2, 3, 1, 1]))  # Output: {1: 3, 2: 2, 3: 1}
+```
+
+---
+
+### 🔹 2. Find the Most Frequent Element
+
+```python
+def most_frequent(lst):
+    freq = count_frequency(lst)
+    return max(freq, key=freq.get)
+
+# Test
+print(most_frequent([1, 2, 2, 3, 1, 1]))  # Output: 1
+```
+
+---
+
+### 🔹 3. Merge Two Dictionaries
+
+```python
+def merge_dicts(d1, d2):
+    return {**d1, **d2}
+
+# Test
+print(merge_dicts({'a': 1}, {'b': 2}))  # Output: {'a': 1, 'b': 2}
+```
+
+---
+
+### 🔹 4. Invert a Dictionary (keys ↔ values)
+
+```python
+def invert_dict(d):
+    return {v: k for k, v in d.items()}
+
+# Test
+print(invert_dict({'a': 1, 'b': 2}))  # Output: {1: 'a', 2: 'b'}
+```
+
+---
+
+### 🔹 5. Find Common Keys in Two Dictionaries
+
+```python
+def common_keys(d1, d2):
+    return list(d1.keys() & d2.keys())
+
+# Test
+print(common_keys({'a': 1, 'b': 2}, {'b': 3, 'c': 4}))  # Output: ['b']
+```
+
+---
+
+### 🔹 6. Remove Duplicates Using Set
+
+```python
+def remove_duplicates(lst):
+    return list(set(lst))
+
+# Test
+print(remove_duplicates([1, 2, 2, 3]))  # Output: [1, 2, 3]
+```
+
+---
+
+### 🔹 7. Check for Subset
+
+```python
+def is_subset(a, b):
+    return set(a).issubset(set(b))
+
+# Test
+print(is_subset([1, 2], [1, 2, 3]))  # True
+```
+
+---
+
+### 🔹 8. Set Operations: Union, Intersection, Difference
+
+```python
+def set_operations(a, b):
+    a, b = set(a), set(b)
+    return {
+        'union': a | b,
+        'intersection': a & b,
+        'difference': a - b
+    }
+
+# Test
+print(set_operations([1, 2, 3], [2, 3, 4]))
+# Output: {'union': {1, 2, 3, 4}, 'intersection': {2, 3}, 'difference': {1}}
+```
+
+---
+
+### 🔹 9. Group Elements by Frequency
+
+```python
+from collections import defaultdict
+
+def group_by_frequency(lst):
+    freq = defaultdict(list)
+    for item in lst:
+        freq[lst.count(item)].append(item)
+    return dict(freq)
+
+# Test
+print(group_by_frequency([1, 2, 2, 3, 3, 3]))
+# Output: {1: [1], 2: [2, 2], 3: [3, 3, 3]}
+```
+
+---
+
+### 🔹 10. Find Duplicate Elements in a List
+
+```python
+def find_duplicates(lst):
+    seen = set()
+    duplicates = set()
+    for item in lst:
+        if item in seen:
+            duplicates.add(item)
+        seen.add(item)
+    return list(duplicates)
+
+# Test
+print(find_duplicates([1, 2, 2, 3, 3, 4]))  # Output: [2, 3]
+```
+
+---
+
+Great! Let's move on to **Day 5: Functions & Recursion – Top 10 Python Coding Questions**. These test your understanding of function design, recursion logic, and problem decomposition — all very important in interviews.
+
+---
+
+## ✅ 5. Functions & Recursion – Coding Questions & Solutions
+
+---
+
+### 🔹 1. Factorial of a Number (Recursive)
+
+```python
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    return n * factorial(n - 1)
+
+# Test
+print(factorial(5))  # Output: 120
+```
+
+---
+
+### 🔹 2. Fibonacci Series (Recursive)
+
+```python
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+# Test
+print([fibonacci(i) for i in range(7)])  # Output: [0, 1, 1, 2, 3, 5, 8]
+```
+
+---
+
+### 🔹 3. Sum of Digits (Recursive)
+
+```python
+def sum_of_digits(n):
+    if n == 0:
+        return 0
+    return n % 10 + sum_of_digits(n // 10)
+
+# Test
+print(sum_of_digits(1234))  # Output: 10
+```
+
+---
+
+### 🔹 4. Check if a Number is Palindrome (Recursive)
+
+```python
+def is_palindrome(s):
+    if len(s) <= 1:
+        return True
+    return s[0] == s[-1] and is_palindrome(s[1:-1])
+
+# Test
+print(is_palindrome("madam"))  # True
+```
+
+---
+
+### 🔹 5. Power of a Number (Recursive)
+
+```python
+def power(base, exp):
+    if exp == 0:
+        return 1
+    return base * power(base, exp - 1)
+
+# Test
+print(power(2, 3))  # Output: 8
+```
+
+---
+
+### 🔹 6. Print All Subsets of a List
+
+```python
+def subsets(lst):
+    result = []
+    def backtrack(index, path):
+        if index == len(lst):
+            result.append(path)
+            return
+        backtrack(index + 1, path)
+        backtrack(index + 1, path + [lst[index]])
+    backtrack(0, [])
+    return result
+
+# Test
+print(subsets([1, 2]))  # Output: [[], [2], [1], [1, 2]]
+```
+
+---
+
+### 🔹 7. Greatest Common Divisor (GCD)
+
+```python
+def gcd(a, b):
+    if b == 0:
+        return a
+    return gcd(b, a % b)
+
+# Test
+print(gcd(48, 18))  # Output: 6
+```
+
+---
+
+### 🔹 8. Find nth Digit in a Series (e.g., n-th Fibonacci, Triangular, etc.)
+
+```python
+def triangular_number(n):
+    return n * (n + 1) // 2
+
+# Test
+print(triangular_number(4))  # Output: 10
+```
+
+---
+
+### 🔹 9. Binary Search (Recursive)
+
+```python
+def binary_search(arr, target, left, right):
+    if left > right:
+        return -1
+    mid = (left + right) // 2
+    if arr[mid] == target:
+        return mid
+    elif arr[mid] < target:
+        return binary_search(arr, target, mid + 1, right)
+    else:
+        return binary_search(arr, target, left, mid - 1)
+
+# Test
+print(binary_search([1, 3, 5, 7, 9], 5, 0, 4))  # Output: 2
+```
+
+---
+
+### 🔹 10. Count Ways to Climb Stairs (1 or 2 steps at a time)
+
+```python
+def count_ways(n):
+    if n <= 1:
+        return 1
+    return count_ways(n-1) + count_ways(n-2)
+
+# Test
+print(count_ways(4))  # Output: 5
+```
+
+---
+
+Perfect! Let’s continue with **Day 6: Object-Oriented Programming (OOP) – Top 10 Python Coding Questions**. These are often asked to test your understanding of **classes, objects, inheritance, polymorphism**, and **encapsulation**.
+
+---
+
+## ✅ 6. OOP in Python – Coding Questions & Concepts
+
+---
+
+### 🔹 1. Create a Simple Class with Attributes and Methods
+
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def greet(self):
+        return f"Hello, I am {self.name} and I am {self.age} years old."
+
+# Test
+p = Person("Alice", 25)
+print(p.greet())
+```
+
+---
+
+### 🔹 2. Class Inheritance
+
+```python
+class Animal:
+    def speak(self):
+        return "Animal speaks"
+
+class Dog(Animal):
+    def speak(self):
+        return "Dog barks"
+
+# Test
+d = Dog()
+print(d.speak())  # Output: Dog barks
+```
+
+---
+
+### 🔹 3. Polymorphism Using Inheritance
+
+```python
+class Bird:
+    def fly(self):
+        return "Bird flies"
+
+class Airplane:
+    def fly(self):
+        return "Airplane flies"
+
+def lift_off(obj):
+    print(obj.fly())
+
+# Test
+lift_off(Bird())       # Bird flies
+lift_off(Airplane())   # Airplane flies
+```
+
+---
+
+### 🔹 4. Encapsulation (Private Attributes)
+
+```python
+class BankAccount:
+    def __init__(self):
+        self.__balance = 0  # private variable
+
+    def deposit(self, amount):
+        self.__balance += amount
+
+    def get_balance(self):
+        return self.__balance
+
+# Test
+acc = BankAccount()
+acc.deposit(100)
+print(acc.get_balance())  # Output: 100
+```
+
+---
+
+### 🔹 5. Class Method vs Static Method
+
+```python
+class Math:
+    @staticmethod
+    def add(x, y):
+        return x + y
+
+    @classmethod
+    def identity(cls):
+        return f"This is {cls.__name__}"
+
+# Test
+print(Math.add(2, 3))         # 5
+print(Math.identity())        # Math
+```
+
+---
+
+### 🔹 6. Operator Overloading
+
+```python
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __add__(self, other):
+        return Point(self.x + other.x, self.y + other.y)
+
+    def __str__(self):
+        return f"({self.x}, {self.y})"
+
+# Test
+p1 = Point(1, 2)
+p2 = Point(3, 4)
+print(p1 + p2)  # Output: (4, 6)
+```
+
+---
+
+### 🔹 7. Multiple Inheritance
+
+```python
+class A:
+    def method(self):
+        return "A"
+
+class B:
+    def method(self):
+        return "B"
+
+class C(A, B):
+    pass
+
+# Test
+c = C()
+print(c.method())  # Output: A (based on MRO)
+```
+
+---
+
+### 🔹 8. Abstract Base Class
+
+```python
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+
+class Square(Shape):
+    def __init__(self, side):
+        self.side = side
+
+    def area(self):
+        return self.side ** 2
+
+# Test
+s = Square(5)
+print(s.area())  # Output: 25
+```
+
+---
+
+### 🔹 9. Composition vs Inheritance
+
+```python
+class Engine:
+    def start(self):
+        return "Engine started"
+
+class Car:
+    def __init__(self):
+        self.engine = Engine()
+
+    def start(self):
+        return self.engine.start()
+
+# Test
+c = Car()
+print(c.start())  # Engine started
+```
+
+---
+
+### 🔹 10. Object Count Using Class Variable
+
+```python
+class Student:
+    count = 0
+
+    def __init__(self):
+        Student.count += 1
+
+# Test
+s1 = Student()
+s2 = Student()
+print(Student.count)  # Output: 2
+```
+
+---
+Great! Let’s proceed with **Day 7: Exception Handling & File I/O – Top 10 Python Coding Questions**. These are key for testing how well you write **robust, real-world applications**.
+
+---
+
+## ✅ 7. Exception Handling & File I/O – Coding Questions & Solutions
+
+---
+
+### 🔹 1. Handle Division by Zero
+
+```python
+def safe_divide(a, b):
+    try:
+        return a / b
+    except ZeroDivisionError:
+        return "Cannot divide by zero"
+
+# Test
+print(safe_divide(10, 0))  # Output: Cannot divide by zero
+```
+
+---
+
+### 🔹 2. Read a File and Print Each Line
+
+```python
+def read_file(filename):
+    try:
+        with open(filename, 'r') as f:
+            for line in f:
+                print(line.strip())
+    except FileNotFoundError:
+        print("File not found.")
+
+# Test
+# read_file('sample.txt')
+```
+
+---
+
+### 🔹 3. Write a List of Strings to a File
+
+```python
+def write_to_file(filename, lines):
+    with open(filename, 'w') as f:
+        for line in lines:
+            f.write(line + '\n')
+
+# Test
+# write_to_file('output.txt', ['Hello', 'World'])
+```
+
+---
+
+### 🔹 4. Copy Contents from One File to Another
+
+```python
+def copy_file(source, dest):
+    try:
+        with open(source, 'r') as src, open(dest, 'w') as dst:
+            dst.write(src.read())
+    except FileNotFoundError:
+        print("Source file not found.")
+
+# Test
+# copy_file('sample.txt', 'copy.txt')
+```
+
+---
+
+### 🔹 5. Count Number of Words in a File
+
+```python
+def count_words(filename):
+    try:
+        with open(filename, 'r') as f:
+            text = f.read()
+            return len(text.split())
+    except FileNotFoundError:
+        return 0
+
+# Test
+# print(count_words('sample.txt'))
+```
+
+---
+
+### 🔹 6. Raise Custom Exception for Age Check
+
+```python
+class AgeTooSmallError(Exception):
+    pass
+
+def check_age(age):
+    if age < 18:
+        raise AgeTooSmallError("Age must be at least 18")
+    return "Age is valid"
+
+# Test
+# print(check_age(15))  # Will raise exception
+```
+
+---
+
+### 🔹 7. Handle Multiple Exceptions
+
+```python
+def process_input(val):
+    try:
+        return int(val)
+    except ValueError:
+        return "Invalid number"
+    except TypeError:
+        return "NoneType not allowed"
+
+# Test
+print(process_input("abc"))  # Output: Invalid number
+```
+
+---
+
+### 🔹 8. Log Errors to a File
+
+```python
+def log_error(err_msg, filename="error.log"):
+    with open(filename, 'a') as f:
+        f.write(err_msg + '\n')
+
+# Usage
+# try:
+#     1 / 0
+# except ZeroDivisionError as e:
+#     log_error(str(e))
+```
+
+---
+
+### 🔹 9. Count Character Frequency in a File
+
+```python
+from collections import Counter
+
+def char_freq_file(filename):
+    with open(filename, 'r') as f:
+        return dict(Counter(f.read()))
+
+# Test
+# print(char_freq_file('sample.txt'))
+```
+
+---
+
+### 🔹 10. File Line Reversal
+
+```python
+def reverse_file_lines(filename):
+    with open(filename, 'r') as f:
+        lines = f.readlines()
+    with open(filename, 'w') as f:
+        for line in reversed(lines):
+            f.write(line)
+
+# Test
+# reverse_file_lines('sample.txt')
+```
+
+---
+
+Awesome! Let’s dive into **Day 8: List Comprehensions & Lambda Functions – Top 10 Python Coding Questions**. These concepts are frequently tested for writing **concise, Pythonic code** and handling **data transformations** efficiently.
+
+---
+
+## ✅ 8. List Comprehensions & Lambda – Coding Questions & Solutions
+
+---
+
+### 🔹 1. Generate Squares of Numbers from 1 to 10
+
+```python
+squares = [x**2 for x in range(1, 11)]
+print(squares)  # Output: [1, 4, 9, ..., 100]
+```
+
+---
+
+### 🔹 2. Extract Even Numbers from a List
+
+```python
+nums = [1, 2, 3, 4, 5, 6]
+evens = [x for x in nums if x % 2 == 0]
+print(evens)  # Output: [2, 4, 6]
+```
+
+---
+
+### 🔹 3. Flatten a 2D List
+
+```python
+matrix = [[1, 2], [3, 4], [5, 6]]
+flat = [num for row in matrix for num in row]
+print(flat)  # Output: [1, 2, 3, 4, 5, 6]
+```
+
+---
+
+### 🔹 4. Filter Words Longer Than 3 Characters
+
+```python
+words = ['hi', 'hello', 'to', 'Python']
+long_words = [word for word in words if len(word) > 3]
+print(long_words)  # Output: ['hello', 'Python']
+```
+
+---
+
+### 🔹 5. Convert List of Strings to Uppercase
+
+```python
+names = ['alice', 'bob', 'charlie']
+upper_names = [name.upper() for name in names]
+print(upper_names)  # Output: ['ALICE', 'BOB', 'CHARLIE']
+```
+
+---
+
+### 🔹 6. Use Lambda to Sort Tuples by Second Value
+
+```python
+pairs = [(1, 3), (2, 1), (4, 2)]
+sorted_pairs = sorted(pairs, key=lambda x: x[1])
+print(sorted_pairs)  # Output: [(2, 1), (4, 2), (1, 3)]
+```
+
+---
+
+### 🔹 7. Filter Using `filter()` and Lambda
+
+```python
+nums = [1, 2, 3, 4, 5, 6]
+evens = list(filter(lambda x: x % 2 == 0, nums))
+print(evens)  # Output: [2, 4, 6]
+```
+
+---
+
+### 🔹 8. Transform Using `map()` and Lambda
+
+```python
+nums = [1, 2, 3]
+doubled = list(map(lambda x: x * 2, nums))
+print(doubled)  # Output: [2, 4, 6]
+```
+
+---
+
+### 🔹 9. Reduce to Sum List Elements
+
+```python
+from functools import reduce
+
+nums = [1, 2, 3, 4]
+total = reduce(lambda x, y: x + y, nums)
+print(total)  # Output: 10
+```
+
+---
+
+### 🔹 10. Zip and Format Data
+
+```python
+names = ['Alice', 'Bob']
+scores = [90, 85]
+result = [f"{n}: {s}" for n, s in zip(names, scores)]
+print(result)  # Output: ['Alice: 90', 'Bob: 85']
+```
+
+---
+Great! Let’s move on to **Day 9: Decorators & Generators – Top 10 Python Coding Questions**. These are advanced yet very **Pythonic tools** that show up in interviews for **clean, efficient, and memory-friendly code**.
+
+---
+
+## ✅ 9. Decorators & Generators – Coding Questions & Solutions
+
+---
+
+### 🔹 1. Create a Simple Generator for Numbers
+
+```python
+def generate_numbers(n):
+    for i in range(n):
+        yield i
+
+# Test
+for num in generate_numbers(5):
+    print(num)
+```
+
+---
+
+### 🔹 2. Generator for Fibonacci Numbers
+
+```python
+def fibonacci(limit):
+    a, b = 0, 1
+    while a < limit:
+        yield a
+        a, b = b, a + b
+
+# Test
+print(list(fibonacci(10)))  # Output: [0, 1, 1, 2, 3, 5, 8]
+```
+
+---
+
+### 🔹 3. Generator to Read a Large File Line-by-Line
+
+```python
+def read_large_file(filename):
+    with open(filename) as f:
+        for line in f:
+            yield line.strip()
+
+# Usage
+# for line in read_large_file('bigfile.txt'):
+#     print(line)
+```
+
+---
+
+### 🔹 4. Basic Decorator that Logs a Function Call
+
+```python
+def logger(func):
+    def wrapper(*args, **kwargs):
+        print(f"Calling {func.__name__}")
+        return func(*args, **kwargs)
+    return wrapper
+
+@logger
+def greet(name):
+    return f"Hello, {name}"
+
+print(greet("Lahari"))  # Output: Calling greet \n Hello, Lahari
+```
+
+---
+
+### 🔹 5. Decorator to Measure Execution Time
+
+```python
+import time
+
+def timer(func):
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        print("Time:", time.time() - start)
+        return result
+    return wrapper
+
+@timer
+def slow():
+    time.sleep(1)
+
+slow()
+```
+
+---
+
+### 🔹 6. Decorator with Arguments
+
+```python
+def repeat(n):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            for _ in range(n):
+                func(*args, **kwargs)
+        return wrapper
+    return decorator
+
+@repeat(3)
+def say_hello():
+    print("Hello!")
+
+say_hello()  # Output: Hello! (3 times)
+```
+
+---
+
+### 🔹 7. Chain Multiple Decorators
+
+```python
+def bold(func):
+    def wrapper(*args, **kwargs):
+        return "<b>" + func(*args, **kwargs) + "</b>"
+    return wrapper
+
+def italic(func):
+    def wrapper(*args, **kwargs):
+        return "<i>" + func(*args, **kwargs) + "</i>"
+    return wrapper
+
+@bold
+@italic
+def greet():
+    return "Hello"
+
+print(greet())  # Output: <b><i>Hello</i></b>
+```
+
+---
+
+### 🔹 8. Generator Expression to Filter Even Numbers
+
+```python
+nums = [1, 2, 3, 4, 5, 6]
+evens = (x for x in nums if x % 2 == 0)
+print(list(evens))  # Output: [2, 4, 6]
+```
+
+---
+
+### 🔹 9. Generator to Reverse a String
+
+```python
+def reverse_string(s):
+    for i in range(len(s)-1, -1, -1):
+        yield s[i]
+
+print(''.join(reverse_string("hello")))  # Output: olleh
+```
+
+---
+
+### 🔹 10. Use `next()` with Generator
+
+```python
+def counter():
+    yield 1
+    yield 2
+    yield 3
+
+g = counter()
+print(next(g))  # 1
+print(next(g))  # 2
+```
+
+---
+Perfect! You’ve made it to **Day 10: Final Mixed Practice – Top 10 Python Interview-Level Coding Questions** 🎯. These combine multiple concepts (strings, lists, logic, OOP, etc.) and simulate **real interview problems**.
+
+---
+
+## ✅ 10. Final Mixed Practice – Coding Questions & Solutions
+
+---
+
+### 🔹 1. Check if a String is a Palindrome (ignoring case & spaces)
+
+```python
+def is_palindrome(s):
+    s = ''.join(s.lower().split())
+    return s == s[::-1]
+
+print(is_palindrome("A man a plan a canal Panama"))  # True
+```
+
+---
+
+### 🔹 2. Find All Duplicates in a List
+
+```python
+from collections import Counter
+
+def find_duplicates(nums):
+    freq = Counter(nums)
+    return [num for num, count in freq.items() if count > 1]
+
+print(find_duplicates([1, 2, 2, 3, 4, 4]))  # [2, 4]
+```
+
+---
+
+### 🔹 3. Merge Two Sorted Lists
+
+```python
+def merge_sorted(a, b):
+    result = []
+    i = j = 0
+    while i < len(a) and j < len(b):
+        if a[i] < b[j]:
+            result.append(a[i])
+            i += 1
+        else:
+            result.append(b[j])
+            j += 1
+    result.extend(a[i:])
+    result.extend(b[j:])
+    return result
+
+print(merge_sorted([1,3,5], [2,4,6]))  # [1,2,3,4,5,6]
+```
+
+---
+
+### 🔹 4. Validate Balanced Brackets
+
+```python
+def is_balanced(s):
+    stack = []
+    pairs = {')':'(', ']':'[', '}':'{'}
+    for char in s:
+        if char in '([{':
+            stack.append(char)
+        elif char in ')]}':
+            if not stack or stack[-1] != pairs[char]:
+                return False
+            stack.pop()
+    return not stack
+
+print(is_balanced("{[()]}"))  # True
+print(is_balanced("{[(])}"))  # False
+```
+
+---
+
+### 🔹 5. Find Missing Number in Range 1 to N
+
+```python
+def find_missing(nums):
+    n = len(nums) + 1
+    total = n * (n + 1) // 2
+    return total - sum(nums)
+
+print(find_missing([1, 2, 4, 5]))  # 3
+```
+
+---
+
+### 🔹 6. Find Intersection of Two Arrays
+
+```python
+def intersect(a, b):
+    return list(set(a) & set(b))
+
+print(intersect([1,2,3], [2,3,4]))  # [2, 3]
+```
+
+---
+
+### 🔹 7. Group Words by Anagram
+
+```python
+from collections import defaultdict
+
+def group_anagrams(words):
+    groups = defaultdict(list)
+    for word in words:
+        key = ''.join(sorted(word))
+        groups[key].append(word)
+    return list(groups.values())
+
+print(group_anagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+```
+
+---
+
+### 🔹 8. LRU Cache (Simplified with `OrderedDict`)
+
+```python
+from collections import OrderedDict
+
+class LRUCache:
+    def __init__(self, capacity):
+        self.cache = OrderedDict()
+        self.capacity = capacity
+    
+    def get(self, key):
+        if key not in self.cache:
+            return -1
+        self.cache.move_to_end(key)
+        return self.cache[key]
+    
+    def put(self, key, value):
+        if key in self.cache:
+            self.cache.move_to_end(key)
+        self.cache[key] = value
+        if len(self.cache) > self.capacity:
+            self.cache.popitem(last=False)
+
+# Test
+lru = LRUCache(2)
+lru.put(1, 1)
+lru.put(2, 2)
+print(lru.get(1))  # 1
+lru.put(3, 3)      # Evicts key 2
+print(lru.get(2))  # -1
+```
+
+---
+
+### 🔹 9. Check if Two Strings are Isomorphic
+
+```python
+def is_isomorphic(s, t):
+    mapping_s_t = {}
+    mapping_t_s = {}
+    for a, b in zip(s, t):
+        if mapping_s_t.get(a, b) != b or mapping_t_s.get(b, a) != a:
+            return False
+        mapping_s_t[a] = b
+        mapping_t_s[b] = a
+    return True
+
+print(is_isomorphic("egg", "add"))  # True
+print(is_isomorphic("foo", "bar"))  # False
+```
+
+---
+
+### 🔹 10. Find Majority Element (> n/2 times)
+
+```python
+def majority_element(nums):
+    count, candidate = 0, None
+    for num in nums:
+        if count == 0:
+            candidate = num
+        count += (1 if num == candidate else -1)
+    return candidate
+
+print(majority_element([3,3,4,2,3,3,3]))  # 3
+```
+
+
+---
+day 11:
+### 🌟 **Pattern Printing Problems**
+
+1. **Right-angled triangle**
+
+```
+*
+* *
+* * *
+* * * *
+```
+
+```python
+def right_triangle(n):
+    for i in range(1, n + 1):
+        print('* ' * i)
+```
+
+2. **Inverted triangle**
+
+```
+* * * *
+* * *
+* *
+*
+```
+
+```python
+def inverted_triangle(n):
+    for i in range(n, 0, -1):
+        print('* ' * i)
+```
+
+3. **Pyramid pattern**
+
+```
+   *  
+  * *  
+ * * *  
+* * * *
+```
+
+```python
+def pyramid(n):
+    for i in range(n):
+        print(' ' * (n - i - 1) + '* ' * (i + 1))
+```
+
+4. **Diamond pattern**
+
+```
+   *  
+  * *  
+ * * *  
+* * * *  
+ * * *  
+  * *  
+   *
+```
+
+```python
+def diamond(n):
+    for i in range(n):
+        print(' ' * (n - i - 1) + '* ' * (i + 1))
+    for i in range(n - 2, -1, -1):
+        print(' ' * (n - i - 1) + '* ' * (i + 1))
+```
+
+5. **X pattern with #**
+
+```
+#       #
+ #     # 
+  #   #  
+   # #   
+    #    
+   # #   
+  #   #  
+ #     # 
+#       #
+```
+
+```python
+def x_pattern(n):
+    for i in range(n):
+        for j in range(n):
+            if j == i or j == n - i - 1:
+                print('#', end='')
+            else:
+                print(' ', end='')
+        print()
+```
+
+6. **Number pyramid**
+
+```
+1
+2 3
+4 5 6
+7 8 9 10
+```
+
+```python
+def number_pyramid(n):
+    num = 1
+    for i in range(1, n + 1):
+        for j in range(i):
+            print(num, end=' ')
+            num += 1
+        print()
+```
+
+7. **Right-aligned triangle**
+
+```
+    *
+   **
+  ***
+ ****
+```
+
+```python
+def right_aligned_triangle(n):
+    for i in range(1, n + 1):
+        print(' ' * (n - i) + '*' * i)
+```
+
+
+---
+
+### ✅ **Sample Problem Set**
+
+---
+
+#### **1. Right-Angled Triangle Pattern**
+
+**Problem:**
+Print a right-angled triangle pattern of `*` of height `n`.
+
+**Input:**
+
+```
+n = 4
+```
+
+**Output:**
+
+```
+*
+**
+***
+****
+```
+
+**Python Code Solution:**
+
+```python
+def right_angle_triangle(n):
+    for i in range(1, n + 1):
+        print('*' * i)
+
+right_angle_triangle(4)
+```
+
+---
+
+#### **2. Number Triangle Pattern**
+
+**Problem:**
+Print a triangle where numbers increase row-wise.
+
+**Input:**
+
+```
+n = 4
+```
+
+**Output:**
+
+```
+1
+1 2
+1 2 3
+1 2 3 4
+```
+
+**Python Code Solution:**
+
+```python
+def number_triangle(n):
+    for i in range(1, n + 1):
+        print(" ".join(str(x) for x in range(1, i + 1)))
+
+number_triangle(4)
+```
+
+---
+
+#### **3. Floyd’s Triangle**
+
+**Problem:**
+Print Floyd’s Triangle with `n` rows.
+
+**Input:**
+
+```
+n = 4
+```
+
+**Output:**
+
+```
+1
+2 3
+4 5 6
+7 8 9 10
+```
+
+**Python Code Solution:**
+
+```python
+def floyds_triangle(n):
+    num = 1
+    for i in range(1, n + 1):
+        for j in range(i):
+            print(num, end=" ")
+            num += 1
+        print()
+
+floyds_triangle(4)
+```
+
+---
+
+#### **4. Pascal’s Triangle**
+
+**Problem:**
+Print Pascal's Triangle with `n` rows.
+
+**Input:**
+
+```
+n = 5
+```
+
+**Output:**
+
+```
+      1
+     1 1
+    1 2 1
+   1 3 3 1
+  1 4 6 4 1
+```
+
+**Python Code Solution:**
+
+```python
+def pascals_triangle(n):
+    triangle = []
+    for i in range(n):
+        row = [None for _ in range(i + 1)]
+        row[0], row[-1] = 1, 1
+        for j in range(1, len(row) - 1):
+            row[j] = triangle[i-1][j-1] + triangle[i-1][j]
+        triangle.append(row)
+    
+    for row in triangle:
+        print(" ".join(map(str, row)).center(n * 2))
+
+pascals_triangle(5)
+```
+
+---
+
+#### **5. Butterfly Pattern**
+
+**Problem:**
+Print a butterfly pattern of size `n`.
+
+**Input:**
+
+```
+n = 4
+```
+
+**Output:**
+
+```
+*      *
+**    **
+***  ***
+********
+********
+***  ***
+**    **
+*      *
+```
+
+**Python Code Solution:**
+
+```python
+def butterfly_pattern(n):
+    for i in range(1, n + 1):
+        print('*' * i + ' ' * (2 * (n - i)) + '*' * i)
+    for i in range(n, 0, -1):
+        print('*' * i + ' ' * (2 * (n - i)) + '*' * i)
+
+butterfly_pattern(4)
+```
+
+---
+
+#### **6. Hourglass Pattern**
+
+**Problem:**
+Print an hourglass pattern of size `n`.
+
+**Input:**
+
+```
+n = 5
+```
+
+**Output:**
+
+```
+*********
+ *******
+  *****
+   ***
+    *
+   ***
+  *****
+ *******
+*********
+```
+
+**Python Code Solution:**
+
+```python
+def hourglass_pattern(n):
+    # Top half of the hourglass
+    for i in range(n):
+        print(' ' * i + '*' * (2 * (n - i) - 1))
+    
+    # Bottom half of the hourglass
+    for i in range(n - 2, -1, -1):
+        print(' ' * i + '*' * (2 * (n - i) - 1))
+
+hourglass_pattern(5)
+```
+
+---
+

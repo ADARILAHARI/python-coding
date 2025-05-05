@@ -1,14 +1,5 @@
-def armstrong(num):
-    num = str(number)
-    num_digits = len(num)
-    for num_digit in num:
-        sum += int(digit)** num_digits
+#print("python is \nesay to use ")
 
-        if sum == number:
-            return true
-        else:
-            return false
-
-num = int(input())
-
-    
+x=6
+y=4
+printf(x,y, sep=":")
