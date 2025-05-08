@@ -98,7 +98,7 @@ def sum(n):
         n = n//10
     return total
 print(sum(n))
-'''
+
 
 def prim(n):
     if n<=1:
@@ -110,5 +110,35 @@ def prim(n):
             return
     print(n, "is prim")
 num = int(input())
-prim(num)     
+prim(num)     ''
+
+n=input()
+m="a"
+for i in n:
+    if i!=m:
+        print(i,end="")
+x=3
+n=20
+while x<=n:
+    print(x)
+    x+=1
+     
+ch = 'a'
+vowels= 'aeiou'
+while ch <= 'z':
+    if ch not in vowels:
+        print(ch)
+    ch = chr(ord(ch)-1)
+    #ch = chr(ord(ch)-1)''
+ch = {1,2,3,4,4,5,2}
+print(ch)
+
+'''
+
+n = "banana"
+set_n= set(n)
+print(set_n, end='#')
+    
+
+
         
