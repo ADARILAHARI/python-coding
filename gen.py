@@ -13,8 +13,14 @@
         print(next(counter))
         print(next(counter))
         
-'''
+''
 a = [1,2,3,4]
 b = [3,5,6,7]
 
-print(a in b)
+print(7 in b)'''
+
+#sum of add elemtents
+a = int(input( ))
+'''x,y,z = a.split( )
+sum = int (x)+ int (y)+int (z)
+print(f"sum of :{sum}")'''
