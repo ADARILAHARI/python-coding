@@ -41,12 +41,15 @@ while i<=n:
 l1=[1,2,3,4]
 l2=[2,4,5,7]
 my_list = l1+l2
-count =  my_list.count[2,4]'''
+count =  my_list.count[2,4]''
 
 n = int(input())
 if n%2 == 0:
     print("even")
 else:
-    print("odd")
+    print("odd")'''
+
+n = 
+
 
 
